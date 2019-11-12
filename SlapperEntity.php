@@ -65,7 +65,7 @@ class SlapperEntity extends Entity {
     }
 
     public function sendNameTag(Player $player): void {
-        $pk = new SetEntityDataPacket();
+        $pk = new SetActorDataPacket();
         $pk->entityRuntimeId = $this->tagId;
         $pk->metadata = [self::DATA_NAMETAG => [self::DATA_TYPE_STRING, $this->getDisplayName($player)]];
         $player->dataPacket($pk);
@@ -73,7 +73,7 @@ class SlapperEntity extends Entity {
 
     public function despawnFrom(Player $player, bool $send = true): void {
         parent::despawnFrom($player, $send);
-        $pk = new RemoveEntityPacket();
+        $pk = new RemoveActorPacket();
         $pk->entityUniqueId = $this->tagId;
         $player->dataPacket($pk);
     }
